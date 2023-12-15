@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:09:13 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/15 16:47:30 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/15 17:44:55 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,27 @@ int	key_res(int key, t_program *main)
 		main->view_y += (-0.5 * main->zoom_scale);
 	program_rendering(main);
 	return (0);
+}
+
+int	scroll_zooming(int button, int x, int y, t_program *fractol)
+{
+    double zoom_in_factor;
+    double zoom_out_factor;
+	
+	zoom_in_factor = 1.05;
+	zoom_out_factor = 0.95;
+	(void) x;
+	(void) y;
+    if (button == 4)
+    {
+        fractol->zoom_scale *= zoom_in_factor;
+   		program_rendering(fractol);
+    }
+    else if (button == 5)
+    {
+        fractol->zoom_scale *= zoom_out_factor;
+    	program_rendering(fractol);
+    }
+    return (0);
 }
 

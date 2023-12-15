@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:30:33 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/15 16:24:57 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/15 17:25:44 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ typedef struct s_complex_number
 }				t_comp;
 
 int				key_res(int key, t_program *main);
-int				mouse_res(int keycode, int x, int y, t_program *main);
+// int				mouse_res(int keycode, int x, int y, t_program *main);
+int scroll_zooming(int button, int x, int y, t_program *fractol);
 void			improved_pixel_put(t_imgdata img, int x, int y, int color);
 int				trgb_converter(int t, int r, int g, int b);
 unsigned char	get_color(int trgb, int color);
