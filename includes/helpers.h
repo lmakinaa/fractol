@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:30:33 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/16 18:13:12 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:53:14 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_complex_number
 }				t_comp;
 
 int				key_res(int key, t_program *main);
-int 			scroll_zooming(int button, int x, int y, t_program *fractol);
+int				scroll_zooming(int button, int x, int y, t_program *fractol);
 void			improved_pixel_put(t_imgdata img, int x, int y, int color);
 int				trgb_converter(int t, int r, int g, int b);
 unsigned char	get_color(int trgb, int color);
@@ -77,7 +77,8 @@ int				ft_puthex(unsigned int n, char *base);
 size_t			ft_numbase_len(unsigned long long n);
 void			program_init(t_program *fractol);
 void			program_rendering(t_program *fractol);
-double			scaling_down(double unscaled_num, double new_min, double new_max, t_program *fractol);
+double			scaling_down(double unscaled_num, double new_min,
+					double new_max, t_program *fractol);
 t_comp			comp_square(t_comp c);
 void			program_data_init(t_program *fractol);
 void			program_events_init(t_program *fractol);

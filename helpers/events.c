@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:09:13 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/16 17:55:06 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:42:35 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,15 @@ int	key_res(int key, t_program *main)
 	return (0);
 }
 
-
-int scroll_zooming(int button, int x, int y, t_program *fractol)
+int	scroll_zooming(int button, int x, int y, t_program *fractol)
 {
-	double prev_scale = fractol->zoom_scale;
-	double zoom_factor = 0.05;
-
+	(void) x;
+	(void) y;
 	if (button == 4)
-		fractol->zoom_scale *= (1 - zoom_factor);
+		fractol->zoom_scale *= 0.95;
 	else if (button == 5)
-		fractol->zoom_scale *= (1 + zoom_factor);
-
-	// Adjust the view position based on the mouse position
-	double mouse_x = (double)x / WIN_WIDTH;
-	double mouse_y = (double)y / WIN_HEIGHT;
-	fractol->view_x += (mouse_x - 0.5) * (prev_scale - fractol->zoom_scale);
-	fractol->view_y += (mouse_y - 0.5) * (prev_scale - fractol->zoom_scale);
-
-	// ft_printf("x-->%d | y-->%d\n", x, y); 
-	program_rendering(fractol);
+		fractol->zoom_scale *= 1.05;
+	if (button == 4 || button == 5)
+		program_rendering(fractol);
 	return (0);
 }
-
-
-

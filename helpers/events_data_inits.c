@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:56:11 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/16 17:48:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:43:03 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	program_data_init(t_program *fractol)
 void	program_events_init(t_program *fractol)
 {
 	mlx_key_hook(fractol->win, key_res, fractol);
-	mlx_hook(fractol->win, 17, 1L<<19, closing, fractol);
+	mlx_hook(fractol->win, 17, 1L << 19, closing, fractol);
 	mlx_mouse_hook(fractol->win, scroll_zooming, fractol);
 }
