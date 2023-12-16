@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 19:54:22 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/15 17:42:30 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/15 17:58:56 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,22 @@ void	program_rendering(t_program *fractol)
 {
 	int	x;
 	int	y;
+	int	model;
 
 	y = 0;
+	if (!ft_strncmp(fractol->model, "mandelbrot", 10))
+		model = 1;
+	else if (!ft_strncmp(fractol->model, "julia", 5))
+		model = 2;
 	while (y < WIN_HEIGHT)
 	{
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			mandelbrot(x, y, fractol);
+			if (model == 1)
+				mandelbrot(x, y, fractol);
+			else if (model == 2)
+				julia(x, y, fractol);
 			x++;
 		}
 		y++;

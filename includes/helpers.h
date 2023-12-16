@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:30:33 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/15 17:25:44 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/16 17:58:28 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-# define ERROR_MESSAGE "Usage: ./fractol <model>\n\n\
-Available models are:\n\t - mandelbrot\n\t - julia\n"
+# define ERROR_MESSAGE "Available models are:\n\n\
+Mandelbrot: [./fractol mandelbrot]\n\
+Julia: [./fractol julia <real part> <imaginary part>]\n\n\
+Tip: press 'c' to shift colors\n"
+
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 800
 
-# define MAX_ITER 30
+# define MAX_ITER 50
 
 typedef struct s_imgdata
 {
@@ -47,6 +50,9 @@ typedef struct s_program
 	double		view_x;
 	double		view_y;
 	double		zoom_scale;
+	double		julia_r;
+	double		julia_i;
+	int			color;
 }	t_program;
 
 typedef struct s_complex_number
@@ -56,8 +62,7 @@ typedef struct s_complex_number
 }				t_comp;
 
 int				key_res(int key, t_program *main);
-// int				mouse_res(int keycode, int x, int y, t_program *main);
-int scroll_zooming(int button, int x, int y, t_program *fractol);
+int 			scroll_zooming(int button, int x, int y, t_program *fractol);
 void			improved_pixel_put(t_imgdata img, int x, int y, int color);
 int				trgb_converter(int t, int r, int g, int b);
 unsigned char	get_color(int trgb, int color);
@@ -79,5 +84,9 @@ void			program_events_init(t_program *fractol);
 double			color_mapping(double unscaled_num, double min, double max);
 int				closing(t_program *fractol);
 void			mandelbrot(int x, int y, t_program *fractol);
+void			julia(int x, int y, t_program *fractol);
+int				ft_strcmp(char const *s1, char const *s2);
+int				ft_isdigit(int c);
+double			ft_atodbl(char *str);
 
 #endif

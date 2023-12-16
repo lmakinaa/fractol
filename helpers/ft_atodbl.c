@@ -1,54 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atodbl.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 16:41:39 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/16 16:23:51 by ijaija           ###   ########.fr       */
+/*   Created: 2023/12/16 15:53:41 by ijaija            #+#    #+#             */
+/*   Updated: 2023/12/16 17:06:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/helpers.h"
 
-static int	case_handling(int i, int sign, const char *str)
+static double	atodbl_part2(char *str, int i, double res, int sign)
 {
-	int			newi;
-	long int	nbr;
-	long int	res;
+	int		j;
+	double	n;
 
-	newi = i;
-	res = 0;
-	while (str[newi] && ft_isdigit(str[newi]))
+	if (str[i] == '.')
 	{
-		nbr = res * 10 + (str[newi] - '0');
-		if (res > nbr && sign == 1)
-			return (-1);
-		else if (res > nbr && sign == -1)
-			return (0);
-		newi++;
-		res = nbr;
+		j = 10;
+		i++;
 	}
-	res = (int) res;
+	while (str[i] && ft_isdigit(str[i]))
+	{
+		n = str[i] - '0';
+		res = res + (n / j);
+		j *= 10;
+		i++;
+	}
 	return (res * sign);
 }
 
-int	ft_atoi(const char *str)
+double	ft_atodbl(char *str)
 {
-	int	i;
-	int	sign;
+	int		i;
+	int		sign;
+	double	res;
 
 	i = 0;
 	sign = 1;
+	res = 0;
 	while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
 			|| str[i] == '\r' || str[i] == '\v' || str[i] == '\f'))
 		i++;
-	if ((str[i] == '-' || str[i] == '+') && str[i])
+	if (str[i] && (str[i] == '+' || str[i] == '-'))
 	{
 		if (str[i] == '-')
 			sign *= -1;
 		i++;
 	}
-	return (case_handling(i, sign, str));
+	while (str[i] && ft_isdigit(str[i]))
+	{
+		res = (res * 10) + (str[i] - '0');
+		i++;
+	}
+	return (atodbl_part2(str, i, res, sign));
 }

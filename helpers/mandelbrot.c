@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:09:30 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/15 17:22:15 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/16 17:59:48 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	mandelbrot(int x, int y, t_program *fractol)
 		if (z.i * z.i + z.r * z.r > fractol->max_value)
 		{
 			improved_pixel_put(fractol->img, x, y,
-				(i + 3) * trgb_converter(0, 0, 0, 255) / fractol->max_iter);
+				(i + 3) * fractol->color / fractol->max_iter);
 			return ;
 		}
 		i++;
