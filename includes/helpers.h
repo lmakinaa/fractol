@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:30:33 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/16 17:58:28 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:13:12 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void			julia(int x, int y, t_program *fractol);
 int				ft_strcmp(char const *s1, char const *s2);
 int				ft_isdigit(int c);
 double			ft_atodbl(char *str);
+void			burning_ship(int x, int y, t_program *fractol);
 
 #endif
