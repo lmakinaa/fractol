@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:09:59 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/15 16:44:54 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/15 20:36:08 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ double	scaling_down(double unscaled_num, double new_min, double new_max,
 	t_program *fractol)
 {
 	double	res;
-	
+	// -2 * 1.00
+	// 2 * 1.00
 	new_min *= fractol->zoom_scale;
 	new_max *= fractol->zoom_scale;
 	res = (new_max - new_min) * (unscaled_num - 0)
