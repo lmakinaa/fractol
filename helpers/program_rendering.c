@@ -6,11 +6,21 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 19:54:22 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/16 18:14:09 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:51:52 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/helpers.h"
+
+static void	model_check(int x, int y, t_program *fractol, int model)
+{
+	if (model == 1)
+		mandelbrot(x, y, fractol);
+	else if (model == 2)
+		julia(x, y, fractol);
+	else if (model == 3)
+		burning_ship(x, y, fractol);
+}
 
 void	program_rendering(t_program *fractol)
 {
@@ -30,12 +40,7 @@ void	program_rendering(t_program *fractol)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			if (model == 1)
-				mandelbrot(x, y, fractol);
-			else if (model == 2)
-				julia(x, y, fractol);
-			else if (model == 3)
-				burning_ship(x, y, fractol);
+			model_check(x, y, fractol, model);
 			x++;
 		}
 		y++;
