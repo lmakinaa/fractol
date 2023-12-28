@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:09:13 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/16 18:42:35 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/21 20:09:27 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,54 +16,77 @@ int	closing(t_program *fractol)
 {
 	mlx_destroy_image(fractol->mlx, fractol->img.obj);
 	mlx_destroy_window(fractol->mlx, fractol->win);
-	free(fractol->mlx);
 	ft_printf("Exiting..\n");
 	exit(EXIT_SUCCESS);
 	return (0);
 }
 
-void	color_shift(int key, t_program *main)
+void	color_shift(int key, t_program *fractol)
 {
 	if (key == 8)
 	{
-		if (main->color == trgb_converter(0, 0, 0, 255))
-			main->color = trgb_converter(0, 0, 255, 0);
-		else if (main->color == trgb_converter(0, 0, 255, 0))
-			main->color = trgb_converter(0, 255, 0, 0);
-		else if (main->color == trgb_converter(0, 255, 0, 0))
-			main->color = trgb_converter(0, 0, 0, 255);
+		if (fractol->color == trgb_converter(0, 0, 0, 255))
+			fractol->color = trgb_converter(0, 0, 255, 0);
+		else if (fractol->color == trgb_converter(0, 0, 255, 0))
+			fractol->color = trgb_converter(0, 255, 0, 0);
+		else if (fractol->color == trgb_converter(0, 255, 0, 0))
+			fractol->color = trgb_converter(0, 0, 0, 255);
 	}
 }
 
-int	key_res(int key, t_program *main)
+void	zoom_view_reset(int key, t_program *fractol)
 {
-	if (key == 53)
+	if (key == 15)
 	{
-		closing(main);
+		fractol->view_x = 0;
+		fractol->view_y = 0;
+		fractol->min_x = -2;
+		fractol->max_x = 2;
+		fractol->min_y = -2;
+		fractol->max_y = 2;
+		fractol->zoom_scale = 1.00;
+	}
+}
+
+int	key_res(int k, t_program *fractol)
+{
+	if (k == 53)
+	{
+		closing(fractol);
 		return (0);
 	}
-	else if (key == 124)
-		main->view_x += (0.5 * main->zoom_scale);
-	else if (key == 123)
-		main->view_x += (-0.5 * main->zoom_scale);
-	else if (key == 125)
-		main->view_y += (0.5 * main->zoom_scale);
-	else if (key == 126)
-		main->view_y += (-0.5 * main->zoom_scale);
-	color_shift(key, main);
-	if (key == 124 || key == 123 || key == 125 || key == 126 || key == 8)
-		program_rendering(main);
+	else if (k == 124)
+		fractol->view_x += (0.5 * fractol->zoom_scale);
+	else if (k == 123)
+		fractol->view_x += (-0.5 * fractol->zoom_scale);
+	else if (k == 125)
+		fractol->view_y += (0.5 * fractol->zoom_scale);
+	else if (k == 126)
+		fractol->view_y += (-0.5 * fractol->zoom_scale);
+	color_shift(k, fractol);
+	zoom_view_reset(k, fractol);
+	if (k == 124 || k == 123 || k == 125 || k == 126 || k == 8 || k == 15)
+		program_rendering(fractol);
 	return (0);
 }
 
 int	scroll_zooming(int button, int x, int y, t_program *fractol)
 {
-	(void) x;
-	(void) y;
+	double	scaled_x;
+	double	scaled_y;
+
+	scaled_x = scaling_down(x, fractol->min_x, fractol->max_x);
+	scaled_y = scaling_down(y, fractol->min_y, fractol->max_y);
 	if (button == 4)
-		fractol->zoom_scale *= 0.95;
+	{
+		fractol->zoom_scale *= 0.87;
+		following_the_mouse(scaled_x, scaled_y, 0.87, fractol);
+	}
 	else if (button == 5)
-		fractol->zoom_scale *= 1.05;
+	{
+		fractol->zoom_scale *= 1.13;
+		following_the_mouse(scaled_x, scaled_y, 1.13, fractol);
+	}
 	if (button == 4 || button == 5)
 		program_rendering(fractol);
 	return (0);

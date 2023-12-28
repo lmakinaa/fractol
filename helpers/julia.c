@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:59:20 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/16 18:48:45 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/21 19:58:15 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	julia(int x, int y, t_program *fractol)
 	t_comp	z;
 	int		i;
 
-	z.r = scaling_down(x, -2, 2, fractol) + fractol->view_x;
-	z.i = scaling_down(y, -2, 2, fractol) + fractol->view_y;
+	z.r = scaling_down(x, fractol->min_x, fractol->max_x) + fractol->view_x;
+	z.i = scaling_down(y, fractol->min_y, fractol->max_y) + fractol->view_y;
 	c.r = fractol->julia_r;
 	c.i = fractol->julia_i;
 	i = 0;
