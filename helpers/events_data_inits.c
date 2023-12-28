@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:56:11 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/16 18:43:03 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/21 19:56:05 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ void	program_data_init(t_program *fractol)
 	fractol->max_value = 4;
 	fractol->view_x = 0;
 	fractol->view_y = 0;
+	fractol->min_x = -2;
+	fractol->max_x = 2;
+	fractol->min_y = -2;
+	fractol->max_y = 2;
 	fractol->zoom_scale = 1.00;
 	fractol->max_iter = MAX_ITER;
 	fractol->color = trgb_converter(0, 0, 0, 255);

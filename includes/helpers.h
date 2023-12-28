@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:30:33 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/16 18:53:14 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/27 17:13:10 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,18 @@
 
 # include <mlx.h>
 # include <stdlib.h>
-# include <stdio.h> // to remove
 # include <math.h>
 # include <stdarg.h>
 # include <unistd.h>
 
 # define ERROR_MESSAGE "Available models are:\n\n\
 Mandelbrot: [./fractol mandelbrot]\n\
-Julia: [./fractol julia <real part> <imaginary part>]\n\n\
+Julia: [./fractol julia <real part> <imaginary part>]\n\
+Burning ship: [./fractol \"burning ship\"]\n\n\
 Tip: press 'c' to shift colors\n"
-
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 800
-
-# define MAX_ITER 50
+# define MAX_ITER 35
 
 typedef struct s_imgdata
 {
@@ -49,6 +47,10 @@ typedef struct s_program
 	void		*win;
 	double		view_x;
 	double		view_y;
+	double		min_x;
+	double		max_x;
+	double		min_y;
+	double		max_y;
 	double		zoom_scale;
 	double		julia_r;
 	double		julia_i;
@@ -78,7 +80,9 @@ size_t			ft_numbase_len(unsigned long long n);
 void			program_init(t_program *fractol);
 void			program_rendering(t_program *fractol);
 double			scaling_down(double unscaled_num, double new_min,
-					double new_max, t_program *fractol);
+					double new_max);
+void			following_the_mouse(double scaled_x, double scaled_y,
+					double zoom_scale, t_program *fractol);
 t_comp			comp_square(t_comp c);
 void			program_data_init(t_program *fractol);
 void			program_events_init(t_program *fractol);

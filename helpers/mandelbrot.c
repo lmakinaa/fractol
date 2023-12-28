@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:09:30 by ijaija            #+#    #+#             */
-/*   Updated: 2023/12/16 18:48:58 by ijaija           ###   ########.fr       */
+/*   Updated: 2023/12/21 19:57:40 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	mandelbrot(int x, int y, t_program *fractol)
 	t_comp	z;
 	int		i;
 
-	c.r = scaling_down(x, -2, 2, fractol) + fractol->view_x;
-	c.i = scaling_down(y, -2, 2, fractol) + fractol->view_y;
+	c.r = scaling_down(x, fractol->min_x, fractol->max_x) + fractol->view_x;
+	c.i = scaling_down(y, fractol->min_y, fractol->max_y) + fractol->view_y;
 	z.r = 0;
 	z.i = 0;
 	i = 0;
