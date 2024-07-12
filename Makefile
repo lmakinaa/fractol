@@ -1,7 +1,7 @@
 # Colors
 GREEN=$(shell tput setaf 2)
 RED=$(shell tput setaf 1)
-NC=$(shell tput sgr0) # No Color
+NC=$(shell tput sgr0)
 
 HELPERS_DIR=./helpers
 INCLUDES=./includes
