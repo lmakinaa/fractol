@@ -15,17 +15,17 @@ $(NAME): $(HELPERS_O) $(MAIN)
 	$(CC) $(CFLAGS) $^ -lmlx -framework OpenGL -framework AppKit -o $@
 
 $(HELPERS_DIR)/%.o: $(HELPERS_DIR)/%.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 main.o: main.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f main.o $(HELPERS_O)
+	@rm -f main.o $(HELPERS_O)
 
 fclean: clean
-	rm -f fractol
+	@rm -f fractol
 
 re: clean all
 
-.PHONY: clean all re fclean
+.PHONY: clean
