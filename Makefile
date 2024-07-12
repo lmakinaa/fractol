@@ -1,3 +1,8 @@
+# Colors
+GREEN=$(shell tput setaf 2)
+RED=$(shell tput setaf 1)
+NC=$(shell tput sgr0) # No Color
+
 HELPERS_DIR=./helpers
 INCLUDES=./includes
 HEADER=./includes/helpers.h
@@ -12,19 +17,22 @@ HELPERS_O=$(HELPERS_DIR)/colors.o $(HELPERS_DIR)/events.o $(HELPERS_DIR)/pixels.
 all: $(NAME)
 
 $(NAME): $(HELPERS_O) $(MAIN)
-	$(CC) $(CFLAGS) $^ -lmlx -framework OpenGL -framework AppKit -o $@
+	@$(CC) $(CFLAGS) $^ -lmlx -framework OpenGL -framework AppKit -o $@
+	@echo "${GREEN}Done building ${NAME}!${NC}"
 
 $(HELPERS_DIR)/%.o: $(HELPERS_DIR)/%.c $(HEADER)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@	
 
 main.o: main.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f main.o $(HELPERS_O)
+	@echo "${RED}Done removing object files.${NC}"
 
 fclean: clean
 	@rm -f fractol
+	@echo "${RED}Done removing ${NAME}.${NC}"
 
 re: clean all
 
