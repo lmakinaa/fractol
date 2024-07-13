@@ -17,7 +17,7 @@ Fractol is a dynamic project aimed at exploring the fascinating field of fractal
 ## Getting Started <a name = "getting_started"></a>
 
 ```
-git clone https://github.com/lmakinaa/fractol && cd fractol
+git clone git@github.com:lmakinaa/fractol.git && cd fractol
 make fractol
 ```
 You can now run ```./fractol``` to get started.
